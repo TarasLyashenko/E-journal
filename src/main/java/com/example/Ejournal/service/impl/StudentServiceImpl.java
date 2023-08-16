@@ -35,6 +35,7 @@ public class StudentServiceImpl implements StudentService
             String phoneNumber = student.getPhoneNumber();
 
             responseBuilder.
+                    append(id).append(" - ").
                     append(gradeNumber).append(" ").
                     append(name).append(" ").
                     append(surname).append(" ").
