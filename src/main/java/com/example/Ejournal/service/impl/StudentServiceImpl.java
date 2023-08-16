@@ -19,4 +19,27 @@ public class StudentServiceImpl implements StudentService
     {
         studentDao.save(student);
     }
+
+    @Override
+    public String createStudentsReport()
+    {
+        StringBuilder responseBuilder = new StringBuilder();
+
+        Iterable<Student> all = studentDao.findAll();
+        for (Student student : all)
+        {
+            long id = student.getId();
+            String gradeNumber = student.getGradeNumber();
+            String surname = student.getSurname();
+            String name = student.getName();
+            String phoneNumber = student.getPhoneNumber();
+
+            responseBuilder.
+                    append(gradeNumber).append(" ").
+                    append(name).append(" ").
+                    append(surname).append(" ").
+                    append(phoneNumber).append("\n");
+        }
+        return responseBuilder.toString();
+    }
 }

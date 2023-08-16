@@ -26,4 +26,9 @@ public class Student
         this.gradeNumber = gradeNumber;
         this.phoneNumber = phoneNumber;
     }
+
+    public Student()
+    {
+
+    }
 }

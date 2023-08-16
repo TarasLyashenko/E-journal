@@ -34,10 +34,14 @@ public class StudentBot extends TelegramLongPollingBot
                 String gradeNumber = parts[3];
                 String phoneNumber = parts[4];
 
-                Student student = new Student(name,surname,gradeNumber,phoneNumber);
+                Student student = new Student(name, surname, gradeNumber, phoneNumber);
                 studentService.saveStudent(student);
                 sendMessage(chatId, "Ученик сохранен");
             }
+        }
+        else if ((message.getText().startsWith("Ученики")))
+        {
+            sendMessage(chatId, studentService.createStudentsReport());
         }
         else
         {
