@@ -36,8 +36,8 @@ public class StudentServiceImpl implements StudentService
 
             responseBuilder.
                     append(gradeNumber).append(" ").
-                    append(surname).append(" ").
                     append(name).append(" ").
+                    append(surname).append(" ").
                     append(phoneNumber).append("\n");
         }
         return responseBuilder.toString();
