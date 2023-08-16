@@ -30,15 +30,15 @@ public class StudentServiceImpl implements StudentService
         {
 
             long id = student.getId();
-            String name = student.getName();
-            String surname = student.getSurname();
             String gradeNumber = student.getGradeNumber();
+            String surname = student.getSurname();
+            String name = student.getName();
             String phoneNumber = student.getPhoneNumber();
 
             responseBuilder.
-                    append(name).append(" ").
-                    append(surname).append(" ").
                     append(gradeNumber).append(" ").
+                    append(surname).append(" ").
+                    append(name).append(" ").
                     append(phoneNumber).append("\n");
         }
         return responseBuilder.toString();

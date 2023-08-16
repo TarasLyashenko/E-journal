@@ -29,12 +29,12 @@ public class StudentBot extends TelegramLongPollingBot
             String[] parts = message.getText().split(" ");
             if (parts.length == 5)
             {
-                String name = parts[1];
+                String gradeNumber = parts[1];
                 String surname = parts[2];
-                String gradeNumber = parts[3];
+                String name = parts[3];
                 String phoneNumber = parts[4];
 
-                Student student = new Student(name,surname,gradeNumber,phoneNumber);
+                Student student = new Student(gradeNumber, surname, name, phoneNumber);
                 studentService.saveStudent(student);
                 sendMessage(chatId, "Ученик сохранен");
             }
