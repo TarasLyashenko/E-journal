@@ -39,6 +39,10 @@ public class StudentBot extends TelegramLongPollingBot
                 sendMessage(chatId, "Ученик сохранен");
             }
         }
+        else if (message.getText().startsWith("ПоказатьВсехУчеников"))
+        {
+            sendMessage(chatId, studentService.seeAllStudent());
+        }
         else
         {
             sendMessage(chatId, "Команда не распознана");
