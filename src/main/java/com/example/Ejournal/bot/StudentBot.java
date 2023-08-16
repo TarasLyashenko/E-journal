@@ -1,5 +1,6 @@
 package com.example.Ejournal.bot;
 
+import com.example.Ejournal.entity.Student;
 import com.example.Ejournal.service.StudentService;
 import jakarta.annotation.Resource;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -22,7 +23,27 @@ public class StudentBot extends TelegramLongPollingBot
     {
         Message message = update.getMessage();
         long chatId = update.getMessage().getChatId();
-        sendMessage(chatId,"hi");
+
+        if (message.getText().startsWith("Ученик+"))
+        {
+            String[] parts = message.getText().split(" ");
+            if (parts.length == 5)
+            {
+                String name = parts[1];
+                String surname = parts[2];
+                String gradeNumber = parts[3];
+                String phoneNumber = parts[4];
+
+                Student student = new Student(name,surname,gradeNumber,phoneNumber);
+                studentService.saveStudent(student);
+                sendMessage(chatId, "Ученик сохранен");
+            }
+        }
+        else
+        {
+            sendMessage(chatId, "Команда не распознана");
+        }
+        sendMessage(chatId, "Обработка завершена");
     }
 
     private void sendMessage(long chatId, String text)

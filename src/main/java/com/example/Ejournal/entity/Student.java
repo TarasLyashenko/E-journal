@@ -18,4 +18,12 @@ public class Student
     private String surname;
     private String gradeNumber;
     private String phoneNumber;
+
+    public Student(String name, String surname, String gradeNumber, String phoneNumber)
+    {
+        this.name = name;
+        this.surname = surname;
+        this.gradeNumber = gradeNumber;
+        this.phoneNumber = phoneNumber;
+    }
 }
