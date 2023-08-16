@@ -21,7 +21,7 @@ public class StudentServiceImpl implements StudentService
     }
 
     @Override
-    public String seeAllStudent()
+    public String createStudentsReport()
     {
         StringBuilder responseBuilder = new StringBuilder();
 

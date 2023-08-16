@@ -41,7 +41,7 @@ public class StudentBot extends TelegramLongPollingBot
         }
         else if ((message.getText().startsWith("Ученики")))
         {
-            sendMessage(chatId, studentService.seeAllStudent());
+            sendMessage(chatId, studentService.createStudentsReport());
         }
         else
         {

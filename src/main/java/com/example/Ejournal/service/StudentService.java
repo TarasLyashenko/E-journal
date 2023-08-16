@@ -6,5 +6,5 @@ public interface StudentService
 {
     void saveStudent(Student student);
 
-    String seeAllStudent();
+    String createStudentsReport();
 }
