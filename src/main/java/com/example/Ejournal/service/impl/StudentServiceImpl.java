@@ -28,7 +28,6 @@ public class StudentServiceImpl implements StudentService
         Iterable<Student> all = studentDao.findAll();
         for (Student student : all)
         {
-
             long id = student.getId();
             String gradeNumber = student.getGradeNumber();
             String surname = student.getSurname();
