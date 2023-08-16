@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+  database:
+    image: mysql:5.7
+    container_name: 'mysql'
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db_e-journal'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_TCP_PORT: 3310
+    ports:
+      - '3310:3310'
+    volumes:
+      - my-db:/var/lib/mysql
+    command:
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+volumes:
+  my-db:
