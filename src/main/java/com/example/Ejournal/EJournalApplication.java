@@ -1,8 +1,6 @@
 package com.example.Ejournal;
 
 import com.example.Ejournal.bot.StudentBot;
-import com.example.Ejournal.entity.Student;
-import com.example.Ejournal.service.StudentService;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import org.springframework.boot.CommandLineRunner;
@@ -17,8 +15,6 @@ public class EJournalApplication implements CommandLineRunner
 {
     @Resource
     private StudentBot studentBot;
-    @Resource
-    private StudentService studentService;
 
     public static void main(String[] args)
     {
@@ -42,13 +38,7 @@ public class EJournalApplication implements CommandLineRunner
     @Override
     public void run(String... args) throws Exception
     {
-        Student student = new Student();
-        student.setName("Вася");
-        student.setSurname("Иванов");
-        student.setGradeNumber("3A");
-        student.setPhoneNumber("+79531746382");
 
-        studentService.saveStudent(student);
     }
 
 
