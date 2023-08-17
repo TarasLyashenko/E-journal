@@ -1,6 +1,9 @@
 package com.example.Ejournal.bot;
 
+import com.example.Ejournal.dao.StudentDao;
+import com.example.Ejournal.entity.Assessment;
 import com.example.Ejournal.entity.Student;
+import com.example.Ejournal.service.AssesmentService;
 import com.example.Ejournal.service.StudentService;
 import jakarta.annotation.Resource;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -12,6 +15,10 @@ public class StudentBot extends TelegramLongPollingBot
 {
     @Resource
     private StudentService studentService;
+    @Resource
+    private AssesmentService assesmentService;
+    @Resource
+    private StudentDao studentDao;
 
     public StudentBot(String token)
     {
@@ -42,6 +49,21 @@ public class StudentBot extends TelegramLongPollingBot
         else if ((message.getText().startsWith("Ученики")))
         {
             sendMessage(chatId, studentService.createStudentsReport());
+        }
+        else if ((message.getText().startsWith("Оценка+")))
+        {
+            String[] parts = message.getText().split(" ");
+            if (parts.length == 3)
+            {
+                long studentId = Long.parseLong(parts[1]);
+//                studentDao.findById(studentId);
+                String subject = parts[2];
+                int score = Integer.parseInt(parts[3]);
+
+                Assessment assessment = new Assessment(studentId, subject, score);
+                assesmentService.saveAssessment(assessment);
+                sendMessage(chatId, "Оценка сохранена");
+            }
         }
         else
         {

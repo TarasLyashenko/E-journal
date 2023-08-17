@@ -10,6 +10,6 @@ public class Beans
     @Bean
     public StudentBot createTelegramBot()
     {
-        return new StudentBot("6523894730:AAGNI1HzUGrr2nSd_WJ22o0Rr1SWaY0b3Pg");
+        return new StudentBot("6523894730:AAFZy47LnYmOYtUb0Vm4QkLeAhpT24SQwJA");
     }
 }
