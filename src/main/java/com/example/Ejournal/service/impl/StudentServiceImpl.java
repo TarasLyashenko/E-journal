@@ -7,6 +7,8 @@ import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @Transactional
 public class StudentServiceImpl implements StudentService
@@ -43,4 +45,13 @@ public class StudentServiceImpl implements StudentService
         }
         return responseBuilder.toString();
     }
+
+    @Override
+    public Student getByid(long studentId)
+    {
+        Optional<Student> byId = studentDao.findById(studentId);
+        Student student = byId.get();
+        return student;
+    }
+
 }

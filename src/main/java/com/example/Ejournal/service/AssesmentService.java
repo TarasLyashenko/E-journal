@@ -1,8 +1,10 @@
 package com.example.Ejournal.service;
 
-import com.example.Ejournal.entity.Assessment;
+import com.example.Ejournal.entity.Assesment;
 
 public interface AssesmentService
 {
-    void saveAssessment(Assessment assessment);
+    void saveAssessment(Assesment assessment);
+
+    Assesment getById(Long assessmentId);
 }

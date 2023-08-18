@@ -1,11 +1,11 @@
 package com.example.Ejournal.dao;
 
-import com.example.Ejournal.entity.Assessment;
+import com.example.Ejournal.entity.Assesment;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AssessmentDao extends CrudRepository<Assessment, Long>
+public interface AssessmentDao extends CrudRepository<Assesment, Long>
 {
-    Assessment findBySubject(String subject);
+    Assesment findBySubject(String subject);
 }

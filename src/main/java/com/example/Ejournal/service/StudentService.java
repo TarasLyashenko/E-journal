@@ -7,4 +7,7 @@ public interface StudentService
     void saveStudent(Student student);
 
     String createStudentsReport();
+
+    Student getByid(long studentId);
+
 }
