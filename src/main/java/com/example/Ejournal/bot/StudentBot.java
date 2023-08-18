@@ -56,7 +56,6 @@ public class StudentBot extends TelegramLongPollingBot
             if (parts.length == 3)
             {
                 long studentId = Long.parseLong(parts[1]);
-//                studentDao.findById(studentId);
                 String subject = parts[2];
                 int score = Integer.parseInt(parts[3]);
 
