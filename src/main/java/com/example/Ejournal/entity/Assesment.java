@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class Assesment
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @ManyToOne
