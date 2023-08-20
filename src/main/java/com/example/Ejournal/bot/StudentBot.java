@@ -33,7 +33,33 @@ public class StudentBot extends TelegramLongPollingBot
         Message message = update.getMessage();
         long chatId = update.getMessage().getChatId();
 
-        if (message.getText().startsWith("Ученик+"))
+        if (message.getText().startsWith("Ученик++"))
+        {
+            String[] lines = message.getText().split("\n");
+            for (int i = 1; i < lines.length; i++)
+            {
+                String line = lines[i];
+                String[] parts = line.split(" ");
+                if (parts.length >= 4)
+                {
+                    String name = parts[0];
+                    String surname = parts[1];
+                    String gradeNumber = parts[2];
+                    String phoneNumber = parts[3];
+
+                    Student student = new Student();
+
+                    student.setName(name);
+                    student.setSurname(surname);
+                    student.setGradeNumber(gradeNumber);
+                    student.setPhoneNumber(phoneNumber);
+                    studentService.saveStudent(student);
+
+                    sendMessage(chatId, "Ученик " + name + " сохранен");
+                }
+            }
+        }
+        else if (message.getText().startsWith("Ученик+"))
         {
             String[] parts = message.getText().split(" ");
             if (parts.length == 5)
@@ -54,6 +80,7 @@ public class StudentBot extends TelegramLongPollingBot
                 sendMessage(chatId, "Ученик сохранен");
             }
         }
+
         else if ((message.getText().startsWith("Ученики")))
         {
             sendMessage(chatId, studentService.createStudentsReport());
