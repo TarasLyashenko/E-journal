@@ -1,6 +1,9 @@
 package com.example.Ejournal.bot;
 
+import com.example.Ejournal.dao.StudentDao;
+import com.example.Ejournal.entity.Assesment;
 import com.example.Ejournal.entity.Student;
+import com.example.Ejournal.service.AssesmentService;
 import com.example.Ejournal.service.StudentService;
 import jakarta.annotation.Resource;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -8,10 +11,16 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import java.time.LocalDate;
+
 public class StudentBot extends TelegramLongPollingBot
 {
     @Resource
     private StudentService studentService;
+    @Resource
+    private AssesmentService assesmentService;
+    @Resource
+    private StudentDao studentDao;
 
     public StudentBot(String token)
     {
@@ -34,14 +43,41 @@ public class StudentBot extends TelegramLongPollingBot
                 String gradeNumber = parts[3];
                 String phoneNumber = parts[4];
 
-                Student student = new Student(name, surname, gradeNumber, phoneNumber);
+                Student student = new Student();
+
+                student.setName(name);
+                student.setSurname(surname);
+                student.setGradeNumber(gradeNumber);
+                student.setPhoneNumber(phoneNumber);
                 studentService.saveStudent(student);
+
                 sendMessage(chatId, "Ученик сохранен");
             }
         }
         else if ((message.getText().startsWith("Ученики")))
         {
             sendMessage(chatId, studentService.createStudentsReport());
+        }
+        else if ((message.getText().startsWith("Оценка+")))
+        {
+            String[] parts = message.getText().split(" ");
+            if (parts.length == 4)
+            {
+                long studentId = Long.parseLong(parts[1]);
+                String subject = parts[2];
+                int score = Integer.parseInt(parts[3]);
+
+                Student student = studentService.getByid(studentId);
+
+                Assesment assesment = new Assesment();
+                assesment.setStudent(student);
+                assesment.setSubject(subject);
+                assesment.setScore(score);
+                assesment.setDate(LocalDate.now());
+                assesmentService.saveAssessment(assesment);
+
+                sendMessage(chatId, "Успешно сохранено");
+            }
         }
         else
         {
