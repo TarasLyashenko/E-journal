@@ -28,4 +28,10 @@ public class AssessmentServiceImpl implements AssesmentService
         Optional<Assesment> byId = assessmentDao.findById(assessmentId);
         return byId.get();
     }
+
+    @Override
+    public String createAssesmentReport(long studentId)
+    {
+        return null;
+    }
 }

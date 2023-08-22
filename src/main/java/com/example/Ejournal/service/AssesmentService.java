@@ -7,4 +7,6 @@ public interface AssesmentService
     void saveAssessment(Assesment assessment);
 
     Assesment getById(Long assessmentId);
+
+    String createAssesmentReport(long studentId);
 }

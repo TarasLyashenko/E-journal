@@ -106,6 +106,11 @@ public class StudentBot extends TelegramLongPollingBot
                 sendMessage(chatId, "Успешно сохранено");
             }
         }
+//        else if ((message.getText().startsWith("Оценки")))
+//        {
+//            sendMessage(chatId, assesmentService.getGradesByStudentId());
+//        }
+
         else
         {
             sendMessage(chatId, "Команда не распознана");
