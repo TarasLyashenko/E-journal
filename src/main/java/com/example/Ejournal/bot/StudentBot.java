@@ -106,10 +106,17 @@ public class StudentBot extends TelegramLongPollingBot
                 sendMessage(chatId, "Успешно сохранено");
             }
         }
-//        else if ((message.getText().startsWith("Оценки")))
-//        {
-//            sendMessage(chatId, assesmentService.getGradesByStudentId());
-//        }
+        else if ((message.getText().startsWith("Оценки")))
+        {
+            String[] parts = message.getText().split(" ");
+            String studentId = parts[1];
+            long studentLongId = Long.parseLong(studentId);
+
+            String assesmentReport = assesmentService.createAssesmentReport(studentLongId);
+            sendMessage(chatId, assesmentReport);
+            sendMessage(chatId, "Выполнено");
+
+        }
 
         else
         {

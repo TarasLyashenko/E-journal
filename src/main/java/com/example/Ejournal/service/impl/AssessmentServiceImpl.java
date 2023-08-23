@@ -1,12 +1,16 @@
 package com.example.Ejournal.service.impl;
 
 import com.example.Ejournal.dao.AssessmentDao;
+import com.example.Ejournal.dao.StudentDao;
 import com.example.Ejournal.entity.Assesment;
+import com.example.Ejournal.entity.Student;
 import com.example.Ejournal.service.AssesmentService;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,6 +19,8 @@ public class AssessmentServiceImpl implements AssesmentService
 {
     @Resource
     private AssessmentDao assessmentDao;
+    @Resource
+    private StudentDao studentDao;
 
     @Override
     public void saveAssessment(Assesment assessment)
@@ -32,6 +38,23 @@ public class AssessmentServiceImpl implements AssesmentService
     @Override
     public String createAssesmentReport(long studentId)
     {
-        return null;
+        StringBuilder responseBuilder = new StringBuilder();
+
+        Optional<Student> byId = studentDao.findById(studentId);
+        Student student = byId.get();
+        List<Assesment> gradesByStudent = assessmentDao.findGradesByStudent(student);
+
+        for (Assesment assesment : gradesByStudent)
+        {
+            LocalDate date = assesment.getDate();
+            String subject = assesment.getSubject();
+            int score = assesment.getScore();
+
+            responseBuilder.
+                    append(date).append(" ").
+                    append(subject).append(" ").
+                    append(score).append("\n");
+        }
+        return responseBuilder.toString();
     }
 }

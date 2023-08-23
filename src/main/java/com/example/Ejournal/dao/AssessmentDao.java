@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface AssessmentDao extends CrudRepository<Assesment, Long>
 {
-    @Query("SELECT a FROM Assesment a WHERE a.student = ?student")
+    @Query("SELECT a FROM Assesment a WHERE a.student = :student")
     List<Assesment> findGradesByStudent(@Param("student") Student student);
 }
