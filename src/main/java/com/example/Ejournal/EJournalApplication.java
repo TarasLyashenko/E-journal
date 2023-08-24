@@ -43,7 +43,5 @@ public class EJournalApplication implements CommandLineRunner
     @Override
     public void run(String... args) throws Exception
     {
-        List<Integer> listScoreByStudentId = assessmentDao.findScoreByStudentAndSubject(1201L, "Биология");
-        System.out.println();
     }
 }
