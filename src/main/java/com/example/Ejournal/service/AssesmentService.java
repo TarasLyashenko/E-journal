@@ -9,4 +9,6 @@ public interface AssesmentService
     Assesment getById(Long assessmentId);
 
     String createAssesmentReport(long studentId);
+
+    Double calculateQuarterGrade(long studentId, String subject);
 }

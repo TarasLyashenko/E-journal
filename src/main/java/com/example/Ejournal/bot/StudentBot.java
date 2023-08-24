@@ -117,6 +117,16 @@ public class StudentBot extends TelegramLongPollingBot
             sendMessage(chatId, "Выполнено");
 
         }
+        else if ((message.getText().startsWith("ВывестиОценку")))
+        {
+            String[] parts = message.getText().split(" ");
+            long studentId = Long.parseLong(parts[1]);
+            String subject = parts[2];
+
+            Double quarterGrade = assesmentService.calculateQuarterGrade(studentId, subject);
+            sendMessage(chatId, "За четверть вышло: " + quarterGrade);
+
+        }
 
         else
         {

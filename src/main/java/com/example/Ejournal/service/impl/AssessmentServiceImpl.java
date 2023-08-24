@@ -57,4 +57,24 @@ public class AssessmentServiceImpl implements AssesmentService
         }
         return responseBuilder.toString();
     }
+
+    @Override
+    public Double calculateQuarterGrade(long studentId, String subject)
+    {
+        List<Integer> grades = assessmentDao.findScoreByStudentAndSubject(studentId, subject);
+
+        if (grades.isEmpty())
+        {
+            return 0.0;
+        }
+
+        int sum = 0;
+        for (Integer grade : grades)
+        {
+            sum += grade;
+        }
+
+        double average = (double) sum / grades.size();
+        return Math.ceil(average);
+    }
 }

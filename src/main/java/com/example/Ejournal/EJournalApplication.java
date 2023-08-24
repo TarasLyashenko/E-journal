@@ -1,6 +1,7 @@
 package com.example.Ejournal;
 
 import com.example.Ejournal.bot.StudentBot;
+import com.example.Ejournal.dao.AssessmentDao;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import org.springframework.boot.CommandLineRunner;
@@ -10,11 +11,15 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
+import java.util.List;
+
 @SpringBootApplication
 public class EJournalApplication implements CommandLineRunner
 {
     @Resource
     private StudentBot studentBot;
+    @Resource
+    private AssessmentDao assessmentDao;
 
     public static void main(String[] args)
     {
@@ -38,5 +43,7 @@ public class EJournalApplication implements CommandLineRunner
     @Override
     public void run(String... args) throws Exception
     {
+        List<Integer> listScoreByStudentId = assessmentDao.findScoreByStudentAndSubject(1201L, "Биология");
+        System.out.println();
     }
 }

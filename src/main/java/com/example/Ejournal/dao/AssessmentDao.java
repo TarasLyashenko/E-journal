@@ -4,7 +4,6 @@ import com.example.Ejournal.entity.Assesment;
 import com.example.Ejournal.entity.Student;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,5 +12,9 @@ import java.util.List;
 public interface AssessmentDao extends CrudRepository<Assesment, Long>
 {
     @Query("SELECT a FROM Assesment a WHERE a.student = :student")
-    List<Assesment> findGradesByStudent(@Param("student") Student student);
+    List<Assesment> findGradesByStudent(Student student);
+
+    @Query("SELECT a.score FROM Assesment a WHERE a.student.id = :studentId AND a.subject = :subject")
+    List<Integer> findScoreByStudentAndSubject(Long studentId, String subject);
+
 }
